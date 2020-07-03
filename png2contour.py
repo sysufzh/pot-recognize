@@ -42,13 +42,13 @@ def convert_gray2binary(img):
     # EqualizeImg = cv2.equalizeHist(img)
     # 全局直方图均衡化
 
-    # clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize= (5,5))
-    # EqualizeImg = clahe.apply(img)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize= (3,3))
+    EqualizeImg = clahe.apply(img)
     # 自适应直方图均衡化
     # cv2.imshow("img",EqualizeImg)
     # cv2.waitKey(0)
 
-    edge = cv2.Canny(img,100,200)
+    edge = cv2.Canny(EqualizeImg,100,200)
     # cv2.imshow("img",edge)
     # cv2.waitKey(0)
     # binary_img = cv2.adaptiveThreshold(edge, 
@@ -97,6 +97,6 @@ def png2contour(img_path, contour_path):
 
 if __name__ == "__main__":
     img_path = 'E:\\Change'
-    contour_path = 'E:\\contour'
+    contour_path = 'E:\\contour\\try'
     png2contour(img_path, contour_path)
     print('Finish!')

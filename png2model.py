@@ -81,7 +81,11 @@ def convert_gray2binary(img):
 # 二值化处理
 # img: cv2灰度图片
 
-    edge = cv2.Canny(img,100,200)
+    clahe = cv2.createCLAHE(clipLimit=2, tileGridSize= (3, 3))
+    cl1 = clahe.apply(img)
+    # CLAHE 自适应直方图均衡化
+
+    edge = cv2.Canny(cl1,100,200)
     # binary_img = cv2.adaptiveThreshold(edge, 
     #                                     255, 
     #                                     cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
@@ -126,7 +130,7 @@ def MoveFile(img_path, move_path):
 
 if __name__ == "__main__":
     img_path = 'E:\\Change'
-    contour_path = 'E:\\contour'
+    contour_path = 'E:\\contour\\try'
     move_path = 'E:\\allpng'
     SiteName = input('Please enter the sitename:')
     TransChinese(img_path, SiteName)
