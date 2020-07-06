@@ -81,7 +81,7 @@ def convert_gray2binary(img):
 # 二值化处理
 # img: cv2灰度图片
 
-    clahe = cv2.createCLAHE(clipLimit=2, tileGridSize= (3, 3))
+    clahe = cv2.createCLAHE(clipLimit=40, tileGridSize= (3, 3))
     cl1 = clahe.apply(img)
     # CLAHE 自适应直方图均衡化
 

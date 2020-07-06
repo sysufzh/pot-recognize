@@ -42,11 +42,11 @@ def convert_gray2binary(img):
     # EqualizeImg = cv2.equalizeHist(img)
     # 全局直方图均衡化
 
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize= (3,3))
+    clahe = cv2.createCLAHE(clipLimit=40.0, tileGridSize= (3,3))
     EqualizeImg = clahe.apply(img)
     # 自适应直方图均衡化
-    # cv2.imshow("img",EqualizeImg)
-    # cv2.waitKey(0)
+    cv2.imshow("img",EqualizeImg)
+    cv2.waitKey(0)
 
     edge = cv2.Canny(EqualizeImg,100,200)
     # cv2.imshow("img",edge)
