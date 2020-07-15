@@ -42,13 +42,15 @@ def convert_gray2binary(img):
     # EqualizeImg = cv2.equalizeHist(img)
     # 全局直方图均衡化
 
-    clahe = cv2.createCLAHE(clipLimit=40.0, tileGridSize= (3,3))
+    clahe = cv2.createCLAHE(clipLimit=1, tileGridSize= (3,3))
+    # clipLimit的参数在1-80之间调整
     EqualizeImg = clahe.apply(img)
-    # 自适应直方图均衡化
-    cv2.imshow("img",EqualizeImg)
-    cv2.waitKey(0)
+    # # 自适应直方图均衡化
+    # cv2.imshow("img",EqualizeImg)
+    # cv2.waitKey(0)
 
-    edge = cv2.Canny(EqualizeImg,100,200)
+    edge = cv2.Canny(EqualizeImg,100,200) 
+    # canny算子的两个参数：minval,maxval,低于minval的直接舍弃，高于maxval的直接认为是真正的边缘，二者之间则判断是否与真正的边界相连
     # cv2.imshow("img",edge)
     # cv2.waitKey(0)
     # binary_img = cv2.adaptiveThreshold(edge, 
