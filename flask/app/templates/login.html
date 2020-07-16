@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>登录</h1>
+    <form action="" method="POST">
+        #用来实现在配置中激活的csrf保护
+        {{ form.hidden_tag()}}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size = 32) }
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size = 32)}}
+        </p>
+        <p>
+            {{ form.remember_me()}}
+            {{ form.remember_me.label}}
+        </p>
+        <p>
+            {{form.submit()}}
+        </p>
+    </form>
+{% endblock %}
