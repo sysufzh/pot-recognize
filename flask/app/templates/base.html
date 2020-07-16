@@ -10,10 +10,22 @@
 </head>
 <body>
     <div>博客: 
-        <a href = "/index">首页</a>
-        <a href = "/login">登录</a>
+        <a href = "{{ url_for('index') }}">首页</a>
+        <a href = "{{ url_for('login') }}">登录</a>
         
     </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ur>
+            {% for messages in messages %}
+                <li>{{ messages }}</li>
+            {% endfor %}
+        </ur>
+        {% endif %}
+    {% endwith %}
+
+
     {% block content %}
 
     {% endblock %}

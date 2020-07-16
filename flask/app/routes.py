@@ -1,6 +1,6 @@
 from app import app
 #从app模块中即从__init__.py中导入创建的app应用
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 #导入模板模块
 from app.form import LoginForm
 
@@ -24,8 +24,16 @@ def index():
     #将数据传递给模板
     return render_template('index.html',title = '我的', user=user, posts = posts)
 
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     #创建一个表单实例
     form = LoginForm()
+    #验证表格中的数据格式是否正确
+    if form.validate_on_submit():
+        #闪现的信息会出现在页面，当然在页面上要设置
+        flash('用户登录的用户名是:{}, 是否记住我:{}'.format(
+            form.username.data, form.remember_me.data))
+        #重新定向至首页
+        return redirect(url_for('index'))
+    #首次登录/数据格式错误都会是在登录界面
     return render_template('login.html', title = '登录', form = form)
