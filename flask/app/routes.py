@@ -14,7 +14,7 @@ from werkzeug.urls import url_parse
 #这样，必须登录后才能访问首页了，会自动跳转到登录页
 # @login_required
 def index():
-    # user = {'username':'duke'}
+    user = {'username':'duke'}
     posts = [
         {
             'author':{'username':'刘'},
@@ -39,7 +39,7 @@ def login():
     #验证表格中的数据格式是否正确
     if form.validate_on_submit():
         #根据表格里的数据进行查询，如果查询到数据返回User对象，否则返回None
-        user = User.query.filter_by(username = form.usernaem.data).first()
+        user = User.query.filter_by(username = form.username.data).first()
         #判断用户不存在或密码不正确
         if user is None or not user.check_password(form.password.data):
             #如果用户不存在或者密码不正确就会闪现这条信息
