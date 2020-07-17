@@ -6,6 +6,8 @@ from app.form import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
+from app import db
+from app.forms import RegistrationForm
 
 
 @app.route('/')
@@ -62,3 +64,19 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # 判断当前用户是否验证，如果通过的话返回首页
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('恭喜你成为我们网站的新用户!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='注册', form=form)
+
