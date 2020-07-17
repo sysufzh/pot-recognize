@@ -13,4 +13,4 @@ db = SQLAlchemy(app)
 #绑定app和数据库，以便进行操作
 migrate = Migrate(app, db)
 
-from app import routes
+from app import routes,models
