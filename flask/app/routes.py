@@ -2,7 +2,7 @@ from app import app
 #从app模块中即从__init__.py中导入创建的app应用
 from flask import render_template, flash, redirect, url_for,request
 #导入模板模块
-from app.form import LoginForm
+from app.forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
