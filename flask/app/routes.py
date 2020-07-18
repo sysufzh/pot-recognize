@@ -86,7 +86,7 @@ def user(username):
 
     user = User.query.filter_by(username = username).first_or_404()
     posts = [
-        {'author':user, 'body':'测试一号'}
+        {'author':user, 'body':'测试一号'},
         {'author':user, 'body':'测试二号'}
     ]
 
