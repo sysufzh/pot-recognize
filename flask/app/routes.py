@@ -90,4 +90,5 @@ def user(username):
         {'author':user, 'body':'测试二号'}
     ]
 
-    return render_template('user.html', user=user, posts=post)
+    return render_template('user.html', user=user, posts=posts)
+    
